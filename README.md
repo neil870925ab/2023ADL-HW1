@@ -3,7 +3,7 @@
 ### Run the Test
 ```shell
 bash ./download.sh
-bash ./run.sh /context.json /test.json /prediction.csv
+bash ./run.sh ./context.json ./test.json ./prediction.csv
 ```
 ##### When you want to try a single work, see below：
 
