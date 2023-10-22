@@ -4,4 +4,4 @@ python ./run_swag_no_trainer.py \
   --context_file "${1}" \
   --train_file "${2}" \
   --validation_file "${3}" \
-  --output_dir ./MC_model 
+  --output_dir ./Model/Multiple_Choice 
