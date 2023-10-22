@@ -23,6 +23,6 @@ bash ./run_qa_no_trainer.sh ./context.json ./train.json ./valid.json
 ```
 
 ### Test Question Answering
-```
+```shell
 bash ./test_qa_no_trainer.sh ./context.json ./mc_res.json ./prediction.csv
 ```
