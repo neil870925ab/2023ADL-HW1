@@ -37,7 +37,7 @@ from accelerate import Accelerator
 from accelerate.logging import get_logger
 from accelerate.utils import set_seed
 from datasets import load_dataset
-from huggingface_hub import Repository, create_repo
+# from huggingface_hub import Repository, create_repo
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 
@@ -338,23 +338,25 @@ def main():
 
     # Handle the repository creation
     if accelerator.is_main_process:
-        if args.push_to_hub:
-            # Retrieve of infer repo_name
-            repo_name = args.hub_model_id
-            if repo_name is None:
-                repo_name = Path(args.output_dir).absolute().name
-            # Create repo and retrieve repo_id
-            repo_id = create_repo(repo_name, exist_ok=True, token=args.hub_token).repo_id
-            # Clone repo locally
-            repo = Repository(args.output_dir, clone_from=repo_id, token=args.hub_token)
+        # if args.push_to_hub:
+        #     # Retrieve of infer repo_name
+        #     repo_name = args.hub_model_id
+        #     if repo_name is None:
+        #         repo_name = Path(args.output_dir).absolute().name
+        #     # Create repo and retrieve repo_id
+        #     repo_id = create_repo(repo_name, exist_ok=True, token=args.hub_token).repo_id
+        #     # Clone repo locally
+        #     repo = Repository(args.output_dir, clone_from=repo_id, token=args.hub_token)
 
-            with open(os.path.join(args.output_dir, ".gitignore"), "w+") as gitignore:
-                if "step_*" not in gitignore:
-                    gitignore.write("step_*\n")
-                if "epoch_*" not in gitignore:
-                    gitignore.write("epoch_*\n")
-        elif args.output_dir is not None:
-            os.makedirs(args.output_dir, exist_ok=True)
+        #     with open(os.path.join(args.output_dir, ".gitignore"), "w+") as gitignore:
+        #         if "step_*" not in gitignore:
+        #             gitignore.write("step_*\n")
+        #         if "epoch_*" not in gitignore:
+        #             gitignore.write("epoch_*\n")
+        # elif args.output_dir is not None:
+        #     os.makedirs(args.output_dir, exist_ok=True)
+        if args.output_dir is not None:             #changed
+             os.makedirs(args.output_dir, exist_ok=True)
     accelerator.wait_for_everyone()
 
     # Get the datasets: you can either provide your own CSV/JSON/TXT training and evaluation files (see below)
